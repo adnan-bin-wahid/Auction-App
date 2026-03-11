@@ -1,0 +1,35 @@
+<section class="panel">
+  <div class="panel-head">
+    <div>
+      <h3>Create Product</h3>
+      <p>POST /api/TestProducts</p>
+    </div>
+
+    <a routerLink="/test-products/list" class="secondary-link">Back to List</a>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <label class="field">
+      <span>Product Name</span>
+      <input type="text" formControlName="name" placeholder="Enter product name" />
+    </label>
+
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <p class="validation">Enter at least 2 characters for the product name.</p>
+    }
+
+    @if (successMessage()) {
+      <p class="message success">{{ successMessage() }}</p>
+    }
+
+    @if (errorMessage()) {
+      <p class="message error">{{ errorMessage() }}</p>
+    }
+
+    <div class="actions">
+      <button type="submit" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Saving...' : 'Save Product' }}
+      </button>
+    </div>
+  </form>
+</section>

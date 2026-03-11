@@ -1,0 +1,40 @@
+<section class="panel">
+  <div class="panel-head">
+    <div>
+      <h3>Products From API</h3>
+      <p>GET /api/TestProducts</p>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="secondary" (click)="loadProducts()">Refresh</button>
+      <a routerLink="/test-products/add" class="primary">Create Product</a>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <p class="status-card">Loading products...</p>
+  } @else if (errorMessage()) {
+    <p class="status-card error">{{ errorMessage() }}</p>
+  } @else if (!products().length) {
+    <p class="status-card">No products returned from the API yet.</p>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products(); track product.id) {
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

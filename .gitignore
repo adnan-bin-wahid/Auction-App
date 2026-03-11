@@ -1,0 +1,43 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backend: .NET build output
+**/bin/
+**/obj/
+**/TestResults/
+
+# ASP.NET local-only settings
+**/appsettings.Local.json
+**/appsettings.*.local.json
+**/secrets.json
+
+# Frontend: Angular / Node
+**/node_modules/
+**/dist/
+**/.angular/cache/
+**/coverage/
+**/tmp/
+**/out-tsc/
+**/bazel-out/
+
+# Editor history / temp
+.history/
+*.tmp
+*.temp
