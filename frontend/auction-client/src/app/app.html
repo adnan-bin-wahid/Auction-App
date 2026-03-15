@@ -1,18 +1,33 @@
 <div class="app-shell">
   <header class="app-header">
-    <div>
-      <p class="eyebrow">Auction Client</p>
-      <h1>Test Products Sample</h1>
-      <p class="subcopy">
-        Structured feature routing, shared service usage, and interceptor-based API access.
-      </p>
-    </div>
+    <div class="header-content">
+      <div>
+        <h1>⚖️ Sealed-Bid Auction System</h1>
+        <p class="subcopy">Secure online auctions with confidential bidding</p>
+      </div>
 
-    <nav class="app-nav" aria-label="Primary navigation">
-      <a routerLink="/test-products/list" routerLinkActive="is-active">Product List</a>
-      <a routerLink="/test-products/add" routerLinkActive="is-active">Add Product</a>
-    </nav>
+      <nav class="app-nav" aria-label="Primary navigation">
+        <a routerLink="/auctions" routerLinkActive="is-active">Auctions</a>
+        <span *ngIf="currentUser$ | async as user; else notLoggedIn">
+          <a
+            *ngIf="user?.role === 'Admin'"
+            routerLink="/admin-dashboard"
+            routerLinkActive="is-active"
+            class="admin-link"
+            >Admin Dashboard</a
+          >
+          <span class="user-info">Welcome, {{ user?.name }}! ({{ user?.role }})</span>
+          <a (click)="logout()" class="logout-link">Logout</a>
+        </span>
+        <ng-template #notLoggedIn>
+          <a routerLink="/login" routerLinkActive="is-active">Login</a>
+          <a routerLink="/register" routerLinkActive="is-active">Register</a>
+        </ng-template>
+      </nav>
+    </div>
   </header>
 
-  <router-outlet />
+  <main class="app-main">
+    <router-outlet />
+  </main>
 </div>
